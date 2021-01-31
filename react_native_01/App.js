@@ -21,8 +21,14 @@ class App extends Component {
   render() {
     return (
       <View style={styles.mainView}>
-        <Header name={this.state.appName}/>
-      </View>
+        {/* <Header name={this.state.appName}/> */}
+        <Text
+          style={styles.mainText}
+          onPress={()=>alert('text touch event')}
+        >
+          Hello World
+        </Text>
+      </View> 
     )
   }
 }
