@@ -6,28 +6,36 @@
  * @flow
  */
 
-//react라는 모듈에서 component라는 클래스를 import 한 것
 import React, { Component } from 'react';
-// View와 Text는 react-native 모듈에서 import 한 것, StyleSheet 이라는 Class import하기
 import { View, Text, StyleSheet } from 'react-native';
 import Header from './src/header';
+import Generator from './src/generator'
 
 // component를 상속받는 App이라는 클래스를 만들었다.
 class App extends Component {
   state = {
-    appName: 'My First App'
+    appName: 'My First App',
+    random: [36, 999]
   }
+
+  onAddRandomNum = (() => {
+    alert('add random number!!!')
+  })
 
   render() {
     return (
       <View style={styles.mainView}>
-        {/* <Header name={this.state.appName}/> */}
-        <Text
-          style={styles.mainText}
-          onPress={()=>alert('text touch event')}
-        >
-          Hello World
-        </Text>
+        <Header name={this.state.appName}/>
+
+        <View>
+          <Text
+            style={styles.mainText}
+            onPress={()=>alert('text touch event')}
+          >
+            Hello World
+          </Text>
+        </View>
+        <Generator add={this.onAddRandomNum}/>
       </View> 
     )
   }
