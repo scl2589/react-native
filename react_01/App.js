@@ -8,7 +8,8 @@
 
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
+// child 컴포넌트 import 하기
+import PropsChild from './propsChild'
 
 class App extends Component{
   // state는 render 함수 밖에서 선언된다.
@@ -16,6 +17,12 @@ class App extends Component{
   // state는 직접 변경하면 안되는 특성을 가지고 있다.
   // setState를 통해 갱신해야 한다.
   // setState를 통해 데이터의 값을 변경할 때는, 현재 버전을 카피한 다음에 다음 버전을 업데이트한다.
+
+  // props는 readOnly, 수정 변경이 불가능한 읽기 전용 property 값이다.
+  // props는 부모/자식 관계 형식이 만들어져야 의미가 있다.
+  // 자식 컴포넌트는 부모로부터 props라는 데이터를 받고, 값은 자식 컴포넌트 내에서 수정, 변경되지 않고 그대로 쓰인다.
+  // props를 왜 쓸까? 한 부모에게 여러 자식이 있을 수가 있음. 부모가 첫째에게 편지쓰고, 둘째에게, 셋쩨에게 똑같은 편지를 또 써. 
+  // 이 경우는 굉장히 비효율적이기 때문에 부모가 오리지널 값을 갖고 있고 props를 통해 자식들에게 같은 것들을 간편하고 손쉽게 전달하면 된다.
 
   state = {
     sampleText: 'Hello World',
@@ -62,15 +69,7 @@ class App extends Component{
   render() {
     return(
       <View style={styles.background}>
-        {/* {this.inputText()} */}
-        {/* this는 react의 문법이 아니고 javascript의 문법입니다. */}
-        <Text onPress={this.changeState}> 
-          {this.state.sampleText}
-        </Text>
-        <Text onPress={this.onAdd}> 
-          {this.state.sampleNum}
-        </Text>
-
+        <PropsChild sText={this.state.sampleText} cState={this.changeState}/>
       </View>
     )
   }
