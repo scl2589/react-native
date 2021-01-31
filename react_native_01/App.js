@@ -20,7 +20,23 @@ class App extends Component {
   }
 
   onAddRandomNum = (() => {
-    alert('add random number!!!')
+    const randomNum = Math.floor(Math.random()*100)+1;
+    this.setState(prevState=> {
+      return {
+        random: [...prevState.random, randomNum]
+      }
+    })
+  })
+
+  onNumDelete = ((position) => {
+    // alert('delete')
+    // filter는 특정 조건에 부합되는 요소만 뽑아내서 새 배열을 만들어주는 함수
+    const newArray = this.state.random.filter((num, index) => {
+      return position != index;
+    })
+    this.setState({
+      random: newArray
+    })
   })
 
   render() {
@@ -38,7 +54,10 @@ class App extends Component {
         </View>
         <Generator add={this.onAddRandomNum}/>
 
-        <NumList num={this.state.random}/>
+        <NumList 
+          num={this.state.random}
+          delete={this.onNumDelete}
+        />
       </View> 
     )
   }
