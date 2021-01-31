@@ -38,14 +38,14 @@ class App extends Component {
 
       // Class Style
       <View style={styles.mainView}>
-        <View>
+        <View style={styles.subView}>
+          <Text style={styles.mainText}>hello world</Text>
+        </View>
+        <View style={styles.subView}>
           <Text>hello world</Text>
         </View>
-        <View>
-          <Text>hello world</Text>
-        </View>
-        <View>
-          <Text>hello world</Text>
+        <View style={styles.anotherSubView}>
+          <Text style={styles.mainText}>hello world</Text>
         </View>
       </View>
     )
@@ -58,8 +58,29 @@ const styles = StyleSheet.create({
     // VIew가 2개인데 하나는 flex가 1이고, 다른하나는 3이라면, 하나는 1/4만큼, 다른 하나는 3/4만큼 화면의 영역을 차지한다.
     flex: 1,
     backgroundColor: 'green',
+    paddingTop: 50,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  subView: {
+    flex: 1,
+    backgroundColor: 'yellow',
+    marginBottom: 10,
+    width: '50%'
+  },
+  anotherSubView: {
+    flex: 2,
+    backgroundColor: 'yellow',
+    marginBottom: 10,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  mainText: {
+    fontSize: 50,
+    fontWeight: 'bold',
+    color: 'red',
+    padding: 20
   }
 })
 
