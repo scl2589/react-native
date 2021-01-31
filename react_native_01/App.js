@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Header from './src/header';
 import Generator from './src/generator'
+import NumList from './src/numlist'
 
 // component를 상속받는 App이라는 클래스를 만들었다.
 class App extends Component {
@@ -36,6 +37,8 @@ class App extends Component {
           </Text>
         </View>
         <Generator add={this.onAddRandomNum}/>
+
+        <NumList num={this.state.random}/>
       </View> 
     )
   }
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingTop: 50,
     alignItems: 'center',
-    justifyContent: 'center'
+    // justifyContent: 'center'
   },
   subView: {
     flex: 1,
