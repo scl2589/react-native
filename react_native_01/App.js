@@ -9,11 +9,12 @@
 import React, { Component } from 'react';
 import { Button, View, Text, StyleSheet, ScrollView, TextInput, Image } from 'react-native';
 import Header from './src/header';
-import Generator from './src/generator'
-import NumList from './src/numlist'
+import Generator from './src/generator';
+import NumList from './src/numlist';
 import Input from './src/input';
-import Picker from './src/picker'
-import Steak from './assets/images/steak.jpg'
+import Picker from './src/picker';
+import Steak from './assets/images/steak.jpg';
+import Modal from './src/modal';
 
 // component를 상속받는 App이라는 클래스를 만들었다.
 class App extends Component {
@@ -40,13 +41,7 @@ class App extends Component {
   render() {
     return (
       <View style={styles.mainView}>
-        <Image
-          style={styles.image}
-          // source={Steak}
-          source={{uri:"https://picsum.photos/id/237/200/300"}}
-          resizeMode="contain"
-          onLoadEnd={()=>alert('Image Loaded!!!!')}
-        />
+        <Modal />
       </View> 
     )
   }
