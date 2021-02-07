@@ -5,9 +5,9 @@
  * @format
  * @flow
  */
-
+ 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import Header from './src/header';
 import Generator from './src/generator'
 import NumList from './src/numlist'
@@ -34,6 +34,7 @@ class App extends Component {
     const newArray = this.state.random.filter((num, index) => {
       return position != index;
     })
+
     this.setState({
       random: newArray
     })
@@ -53,11 +54,23 @@ class App extends Component {
           </Text>
         </View>
         <Generator add={this.onAddRandomNum}/>
-
-        <NumList 
-          num={this.state.random}
-          delete={this.onNumDelete}
-        />
+        <ScrollView 
+          style={{width: '100%'}}
+          // onMomentumScrollBegin은 스크롤이 움직이기 시작했을 때 trigger 해준다
+          // onMomentunScrollBegin={()=>alert('begin')}
+          // onMomentumScrollBegin은 스크롤 움직임이 끝났을 때 trigger 해준다
+          // onMomentunScrollEnd={()=>alert('end')}
+          // onScroll은 스크롤의 움직임이 발생했을 때 trigger 해준다.
+          // onScroll={()=>alert('Scrolling')}
+          // size가 바뀔 때 alert를 출력해준다.
+          // onContentSizeChange={(width, height)=>alert(height)}
+          bounces={true}
+        >
+          <NumList 
+            num={this.state.random}
+            delete={this.onNumDelete}
+          />
+        </ScrollView>
       </View> 
     )
   }
