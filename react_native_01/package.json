@@ -12,6 +12,9 @@
   "dependencies": {
     "@react-native-community/slider": "^3.0.3",
     "@react-native-picker/picker": "^1.9.10",
+    "patch-package": "^6.2.2",
+    "postinstall-postinstall": "^2.1.0",
+    "postinstall": "patch-package",
     "react": "16.9.0",
     "react-native": "0.61.5"
   },

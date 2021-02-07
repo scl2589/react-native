@@ -7,12 +7,13 @@
  */
  
 import React, { Component } from 'react';
-import { Button, View, Text, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { Button, View, Text, StyleSheet, ScrollView, TextInput, Image } from 'react-native';
 import Header from './src/header';
 import Generator from './src/generator'
 import NumList from './src/numlist'
 import Input from './src/input';
 import Picker from './src/picker'
+import Steak from './assets/images/steak.jpg'
 
 // component를 상속받는 App이라는 클래스를 만들었다.
 class App extends Component {
@@ -39,32 +40,13 @@ class App extends Component {
   render() {
     return (
       <View style={styles.mainView}>
-        <Picker></Picker>
-        {/* <TextInput
-            value={this.state.myTextInput}
-            style={styles.input}
-            onChangeText={this.onChangeInput}
-            multiline={true}
-            maxLength={100}
-            autoCapitalize={'none'}
-            editable={true}
+        <Image
+          style={styles.image}
+          // source={Steak}
+          source={{uri:"https://picsum.photos/id/237/200/300"}}
+          resizeMode="contain"
+          onLoadEnd={()=>alert('Image Loaded!!!!')}
         />
-        <Button
-          title="Add Text Input"
-          onPress={this.onAddTextInput}
-        />
-          <ScrollView style={{width: '100%'}}>
-            {
-              this.state.alphabet.map((item, idx) => (
-                <Text
-                  style={styles.mainText}
-                  key={idx}
-                >
-                  {item}
-                </Text>
-              ))
-            }
-          </ScrollView> */}
       </View> 
     )
   }
@@ -107,6 +89,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 25,
     padding: 20
+  },
+  image: {
+    backgroundColor: 'red',
+    width: '100%',
+    height: 700
   }
 })
 
