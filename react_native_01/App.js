@@ -12,6 +12,7 @@ import Header from './src/header';
 import Generator from './src/generator'
 import NumList from './src/numlist'
 import Input from './src/input';
+import Picker from './src/picker'
 
 // component를 상속받는 App이라는 클래스를 만들었다.
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
   render() {
     return (
       <View style={styles.mainView}>
+        <Picker></Picker>
         <TextInput
             value={this.state.myTextInput}
             style={styles.input}
