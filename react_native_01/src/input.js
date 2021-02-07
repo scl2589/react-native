@@ -30,9 +30,9 @@ class Input extends Component {
                     style={styles.input}
                     onChangeText={this.onChangeInput}
                     multiline={true}
-                    maxLength={10}
+                    maxLength={100}
                     autoCapitalize={'none'}
-                    editable={false}
+                    editable={true}
                 />
             </View>
         )
