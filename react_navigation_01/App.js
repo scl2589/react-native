@@ -18,6 +18,7 @@ import UserScreen from './src/user';
 import LogoTitle from './src/logo';
 import DrawerHomeScreen from './src/home';
 import DrawerUserScreen from './src/user';
+import PictogramHome from './src/assets/pics/home_icon.png'
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -29,6 +30,8 @@ CustomDrawerContent = (props) => {
       <DrawerItem
         label="Help"
         onPress={()=>Linking.openURL('http://www.google.com')}
+        // Drawer Navigator에 이미지 추가하기 1번 방식
+        icon={()=><LogoTitle/>}
       />
       <DrawerItem
         label="Info"
@@ -79,7 +82,19 @@ class App extends Component {
           // Side drawer는 default로 drawercontent를 통해 scroll view를 적용한다. 
           drawerContent={props => <CustomDrawerContent {...props} />}
         >
-          <Drawer.Screen name="Home" component={DrawerHomeScreen} />
+          <Drawer.Screen 
+            name="Home" 
+            component={DrawerHomeScreen} 
+            options={{
+              // Drawer Navigator에 이미지 추가하기 2번 방식
+              drawerIcon: () => (
+                <Image
+                  source={PictogramHome}
+                  style={{width: 40, height: 40}}
+                />
+              )
+            }}
+          />
           <Drawer.Screen name="User" component={DrawerUserScreen} />
         </Drawer.Navigator>
 

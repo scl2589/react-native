@@ -14,7 +14,7 @@ class UserScreen extends Component {
 
     headerStyle = () => {
         this.props.navigation.setOptions({
-            title: 'Customizing',
+            title: 'User',
             headerStyle: {
                 backgroundColor: 'blue',
             },
