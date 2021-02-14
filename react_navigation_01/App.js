@@ -8,11 +8,11 @@
 // 맨 위에 넣기 
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, Button } from 'react-native';
+import { StyleSheet, View, Text, Image, Button, Linking } from 'react-native';
 // 모든 navigation 구조는 navigation container안에 들어가야 한다.
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import HomeScreen from './src/home';
 import UserScreen from './src/user';
 import LogoTitle from './src/logo';
@@ -21,6 +21,22 @@ import DrawerUserScreen from './src/user';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+
+CustomDrawerContent = (props) => {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props}/>
+      <DrawerItem
+        label="Help"
+        onPress={()=>Linking.openURL('http://www.google.com')}
+      />
+      <DrawerItem
+        label="Info"
+        onPress={()=>alert('Info Window')}
+      />
+    </DrawerContentScrollView>
+  )
+}
 
 class App extends Component {
 
@@ -32,9 +48,42 @@ class App extends Component {
   //     />
   //   )
   // }
+  
+
 
   render () {
     return (
+      <NavigationContainer>
+        <Drawer.Navigator
+          initialRouteName="Home"
+          // drawerType = front, slide, permanent
+          drawerType="front"
+          // sideDrawer을 오른쪽에서 열 수 있는 방법 
+          drawerPosition="right"
+          drawerStyle={{
+            backgroundColor: '#c6cbef',
+            width: 200
+          }}
+          drawerContentOptions={{
+            // active의 의미는 선택된 것 
+            activeTintColor: 'red',
+            activeBackgroundColor: 'skyblue'
+          }}
+          // drawerContent를 customizing할 수 있는 함수
+          // 그래서 drawerContent를 렌더링하기 위한 react 요소를 반환한다. 
+          // drawerContent는 default로 4가지의 props를 받는다.
+          // 1. drawer naviagator에 어떤 route가 있는지 알기 위한 state
+          // 2. 화면 이동을 해야하니 navigation
+          // 3. drawer screen의 option을 담기 위한 descriptors 
+          // 4. drawer가 열려있는지 닫혔는지 판단하기 위한 progress
+          // Side drawer는 default로 drawercontent를 통해 scroll view를 적용한다. 
+          drawerContent={props => <CustomDrawerContent {...props} />}
+        >
+          <Drawer.Screen name="Home" component={DrawerHomeScreen} />
+          <Drawer.Screen name="User" component={DrawerUserScreen} />
+        </Drawer.Navigator>
+
+      </NavigationContainer>
       // <NavigationContainer>
       //   {/* initialRouteName은 어떤 스크린이 먼저뜨는지 설정하는 것이다. */}
       //   <Stack.Navigator 
