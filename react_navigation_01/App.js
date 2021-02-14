@@ -23,7 +23,20 @@ class App extends Component {
     return (
       <NavigationContainer>
         {/* initialRouteName은 어떤 스크린이 먼저뜨는지 설정하는 것이다. */}
-        <Stack.Navigator initialRouteName="User">
+        <Stack.Navigator 
+          initialRouteName="Home"
+          // 모든 screen에 공통으로 옵션/스타일을 줄 수 있다. 
+          screenOptions={{
+            headerStyle: {
+                backgroundColor: '#a4511e',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              color: '#f3d612'
+            }
+          }}
+        >
           {/* 각각이 route가 되는 것 */}
           <Stack.Screen 
             name="Home" 
@@ -38,17 +51,18 @@ class App extends Component {
               userName: 'Gildong',
               userLastName: 'Go'
             }}
-            // options={{
-            //   title: 'User Screen',
-            //   headerStyle: {
-            //       backgroundColor: 'pink',
-            //   },
-            //   headerTintColor: 'red',
-            //   headerTitleStyle: {
-            //     fontWeight: 'bold',
-            //     color: 'purple'
-            //   }
-            // }}
+            // 만약 userScreen에만 다른 header 스타일을 주고 싶다면? 아래 방식으로 따로 설정한다.
+            options={{
+              title: 'User Screen',
+              headerStyle: {
+                  backgroundColor: 'pink',
+              },
+              headerTintColor: 'red',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                color: 'purple'
+              }
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

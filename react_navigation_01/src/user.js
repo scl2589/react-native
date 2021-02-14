@@ -26,7 +26,7 @@ class UserScreen extends Component {
         })
     }
   render () {
-    this.headerStyle();
+    // this.headerStyle();
     // 이 스크린의 route 값을 할당해준다.
     {/* 패싱 된 값들이 본인의 route에 있는 것이기 때문에 this.props.route로 받아오는 것 */}
     const {params} = this.props.route;
