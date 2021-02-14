@@ -23,10 +23,33 @@ class App extends Component {
     return (
       <NavigationContainer>
         {/* initialRouteName은 어떤 스크린이 먼저뜨는지 설정하는 것이다. */}
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="User">
           {/* 각각이 route가 되는 것 */}
-          <Stack.Screen name="Home" component={HomeScreen}/>  
-          <Stack.Screen name="User" component={UserScreen}/>
+          <Stack.Screen 
+            name="Home" 
+            component={HomeScreen}
+            options={{title: 'Home Screen'}}
+          />  
+          <Stack.Screen 
+            name="User" 
+            component={UserScreen}
+            initialParams={{
+              userIdx: 50,
+              userName: 'Gildong',
+              userLastName: 'Go'
+            }}
+            // options={{
+            //   title: 'User Screen',
+            //   headerStyle: {
+            //       backgroundColor: 'pink',
+            //   },
+            //   headerTintColor: 'red',
+            //   headerTitleStyle: {
+            //     fontWeight: 'bold',
+            //     color: 'purple'
+            //   }
+            // }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     )
