@@ -19,27 +19,28 @@ import LogoTitle from './src/logo';
 import DrawerHomeScreen from './src/home';
 import DrawerUserScreen from './src/user';
 import PictogramHome from './src/assets/pics/home_icon.png'
+import SideDrawer from './src/my_drawer';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-CustomDrawerContent = (props) => {
-  return (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props}/>
-      <DrawerItem
-        label="Help"
-        onPress={()=>Linking.openURL('http://www.google.com')}
-        // Drawer Navigator에 이미지 추가하기 1번 방식
-        icon={()=><LogoTitle/>}
-      />
-      <DrawerItem
-        label="Info"
-        onPress={()=>alert('Info Window')}
-      />
-    </DrawerContentScrollView>
-  )
-}
+// CustomDrawerContent = (props) => {
+//   return (
+//     <DrawerContentScrollView {...props}>
+//       <DrawerItemList {...props}/>
+//       <DrawerItem
+//         label="Help"
+//         onPress={()=>Linking.openURL('http://www.google.com')}
+//         // Drawer Navigator에 이미지 추가하기 1번 방식
+//         icon={()=><LogoTitle/>}
+//       />
+//       <DrawerItem
+//         label="Info"
+//         onPress={()=>alert('Info Window')}
+//       />
+//     </DrawerContentScrollView>
+//   )
+// }
 
 class App extends Component {
 
@@ -80,7 +81,7 @@ class App extends Component {
           // 3. drawer screen의 option을 담기 위한 descriptors 
           // 4. drawer가 열려있는지 닫혔는지 판단하기 위한 progress
           // Side drawer는 default로 drawercontent를 통해 scroll view를 적용한다. 
-          drawerContent={props => <CustomDrawerContent {...props} />}
+          drawerContent={props => <SideDrawer {...props} />}
         >
           <Drawer.Screen 
             name="Home" 
