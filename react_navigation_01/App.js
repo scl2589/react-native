@@ -13,16 +13,20 @@ import { StyleSheet, View, Text, Image, Button, Linking } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/home';
 import UserScreen from './src/user';
 import LogoTitle from './src/logo';
 import DrawerHomeScreen from './src/home';
 import DrawerUserScreen from './src/user';
+import TabHomeScreen from './src/home_tab';
+import TabUserScreen from './src/user_tab';
 import PictogramHome from './src/assets/pics/home_icon.png'
 import SideDrawer from './src/my_drawer';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
 // CustomDrawerContent = (props) => {
 //   return (
@@ -58,48 +62,56 @@ class App extends Component {
   render () {
     return (
       <NavigationContainer>
-        <Drawer.Navigator
-          initialRouteName="Home"
-          // drawerType = front, slide, permanent
-          drawerType="front"
-          // sideDrawer을 오른쪽에서 열 수 있는 방법 
-          drawerPosition="right"
-          drawerStyle={{
-            backgroundColor: '#c6cbef',
-            width: 200
-          }}
-          drawerContentOptions={{
-            // active의 의미는 선택된 것 
-            activeTintColor: 'red',
-            activeBackgroundColor: 'skyblue'
-          }}
-          // drawerContent를 customizing할 수 있는 함수
-          // 그래서 drawerContent를 렌더링하기 위한 react 요소를 반환한다. 
-          // drawerContent는 default로 4가지의 props를 받는다.
-          // 1. drawer naviagator에 어떤 route가 있는지 알기 위한 state
-          // 2. 화면 이동을 해야하니 navigation
-          // 3. drawer screen의 option을 담기 위한 descriptors 
-          // 4. drawer가 열려있는지 닫혔는지 판단하기 위한 progress
-          // Side drawer는 default로 drawercontent를 통해 scroll view를 적용한다. 
-          drawerContent={props => <SideDrawer {...props} />}
-        >
-          <Drawer.Screen 
-            name="Home" 
-            component={DrawerHomeScreen} 
-            options={{
-              // Drawer Navigator에 이미지 추가하기 2번 방식
-              drawerIcon: () => (
-                <Image
-                  source={PictogramHome}
-                  style={{width: 40, height: 40}}
-                />
-              )
-            }}
-          />
-          <Drawer.Screen name="User" component={DrawerUserScreen} />
-        </Drawer.Navigator>
-
+        <Tab.Navigator>
+          <Tab.Screen name="Home" component={TabHomeScreen}/>
+          <Tab.Screen name="User" component={TabUserScreen}/>
+        </Tab.Navigator>
       </NavigationContainer>
+
+
+      // <NavigationContainer>
+      //   <Drawer.Navigator
+      //     initialRouteName="Home"
+      //     // drawerType = front, slide, permanent
+      //     drawerType="front"
+      //     // sideDrawer을 오른쪽에서 열 수 있는 방법 
+      //     drawerPosition="right"
+      //     drawerStyle={{
+      //       backgroundColor: '#c6cbef',
+      //       width: 200
+      //     }}
+      //     drawerContentOptions={{
+      //       // active의 의미는 선택된 것 
+      //       activeTintColor: 'red',
+      //       activeBackgroundColor: 'skyblue'
+      //     }}
+      //     // drawerContent를 customizing할 수 있는 함수
+      //     // 그래서 drawerContent를 렌더링하기 위한 react 요소를 반환한다. 
+      //     // drawerContent는 default로 4가지의 props를 받는다.
+      //     // 1. drawer naviagator에 어떤 route가 있는지 알기 위한 state
+      //     // 2. 화면 이동을 해야하니 navigation
+      //     // 3. drawer screen의 option을 담기 위한 descriptors 
+      //     // 4. drawer가 열려있는지 닫혔는지 판단하기 위한 progress
+      //     // Side drawer는 default로 drawercontent를 통해 scroll view를 적용한다. 
+      //     drawerContent={props => <SideDrawer {...props} />}
+      //   >
+      //     <Drawer.Screen 
+      //       name="Home" 
+      //       component={DrawerHomeScreen} 
+      //       options={{
+      //         // Drawer Navigator에 이미지 추가하기 2번 방식
+      //         drawerIcon: () => (
+      //           <Image
+      //             source={PictogramHome}
+      //             style={{width: 40, height: 40}}
+      //           />
+      //         )
+      //       }}
+      //     />
+      //     <Drawer.Screen name="User" component={DrawerUserScreen} />
+      //   </Drawer.Navigator>
+
+      // </NavigationContainer>
       // <NavigationContainer>
       //   {/* initialRouteName은 어떤 스크린이 먼저뜨는지 설정하는 것이다. */}
       //   <Stack.Navigator 
