@@ -24,6 +24,7 @@ class UserScreen extends Component {
                 color: 'green'
             },
             headerBackTitle: 'BACK',
+            // Navigate 함수를 이용해 홈 화면으로 가도록 만드는 것
             headerRight: () => (
                 <Button
                   title="Go Back"
