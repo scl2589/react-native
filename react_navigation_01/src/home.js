@@ -21,8 +21,14 @@ class HomeScreen extends Component {
           <Text>Home Screen</Text>
           <Button
             title="To User Screen"
+            // HomeScreen에서 User Screen으로 이동하기 위해서 버튼을 터치 할 것
+            // 그 버튼이 눌릴 때 userIdx, userName, userLastName이 parameter로 User의 route에 패싱이된다.
             onPress={() => {
-                this.props.navigation.navigate('User')
+                this.props.navigation.navigate('User', {
+                    userIdx: 100,
+                    userName: 'Gildong',
+                    userLastName: 'Hong'
+                })
             }}
           />
       </View>

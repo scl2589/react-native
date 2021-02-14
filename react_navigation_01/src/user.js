@@ -12,6 +12,12 @@ import { View, Text, Button } from 'react-native';
 
 class UserScreen extends Component {
   render () {
+    // 이 스크린의 route 값을 할당해준다.
+    {/* 패싱 된 값들이 본인의 route에 있는 것이기 때문에 this.props.route로 받아오는 것 */}
+    const {params} = this.props.route;
+    const userIdx = params ? params.userIdx : null;
+    const userName = params ? params.userName : null;
+    const userLastName = params ? params.userLastName : null;
     return (
         <View style={{
             flex:1,
@@ -25,6 +31,9 @@ class UserScreen extends Component {
                 this.props.navigation.navigate('Home')
             }}
           />
+          <Text>User Idx: {JSON.stringify(userIdx)}</Text>
+          <Text>User Name: {JSON.stringify(userName)}</Text>
+          <Text>User LastName: {JSON.stringify(userLastName)}</Text>
         </View>
     )
   }

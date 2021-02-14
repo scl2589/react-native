@@ -22,7 +22,9 @@ class App extends Component {
   render () {
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        {/* initialRouteName은 어떤 스크린이 먼저뜨는지 설정하는 것이다. */}
+        <Stack.Navigator initialRouteName="Home">
+          {/* 각각이 route가 되는 것 */}
           <Stack.Screen name="Home" component={HomeScreen}/>  
           <Stack.Screen name="User" component={UserScreen}/>
         </Stack.Navigator>
