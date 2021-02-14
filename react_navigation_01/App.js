@@ -8,7 +8,7 @@
 // 맨 위에 넣기 
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, Button } from 'react-native';
 // 모든 navigation 구조는 navigation container안에 들어가야 한다.
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -54,7 +54,14 @@ class App extends Component {
             component={HomeScreen}
             options={{
               title: 'Home Screen',
-              headerTitle: <LogoTitle/>
+              headerTitle: <LogoTitle/>,
+              headerRight: () => (
+                <Button
+                  title="Info"
+                  onPress={()=>alert('I am a button!')}
+                  color='orange'
+                />
+              )
             }}
           />  
           <Stack.Screen 
