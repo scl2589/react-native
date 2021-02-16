@@ -17,14 +17,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/home';
 import UserScreen from './src/user';
 import LogoTitle from './src/logo';
-import DrawerHomeScreen from './src/home';
-import DrawerUserScreen from './src/user';
+import DrawerHomeScreen from './src/home_drawer';
+import DrawerUserScreen from './src/user_drawer';
 import TabHomeScreen from './src/home_tab';
 import TabUserScreen from './src/user_tab';
 import TabMessageScreen from './src/message_tab';
 import PictogramHome from './src/assets/pics/home_icon.png'
 import SideDrawer from './src/my_drawer';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
+import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -32,23 +33,31 @@ const Tab = createBottomTabNavigator();
 
 const TabBarIcon = (focused, name) => {
   let iconImagePath;
+  let iconName, iconSize;
 
   if (name==='Home') {
-    iconImagePath = require('./src/assets/pics/home_icon.png')
+    iconName = 'home-outline'
+    // iconImagePath = require('./src/assets/pics/home_icon.png')
   } else if (name === 'User') {
-    iconImagePath = require('./src/assets/pics/user.png')
+    iconName = 'people-outline'
+    // iconImagePath = require('./src/assets/pics/user.png')
   } else if (name === 'Message') {
-    iconImagePath = require('./src/assets/pics/message.png')
+    iconName = 'mail-outline'
+    // iconImagePath = require('./src/assets/pics/message.png')
   }
-
+  iconSize = focused ? 30 : 20 
   return (
-    <Image 
-      style = {{
-        width: focused ? 24 : 20,
-        height: focused ? 24 : 20,
-      }}
-      source = {iconImagePath}
+    <Ionicons
+      name={iconName}
+      size={iconSize}
     />
+    // <Image 
+    //   style = {{
+    //     width: focused ? 24 : 20,
+    //     height: focused ? 24 : 20,
+    //   }}
+    //   source = {iconImagePath}
+    // />
   )
 }
 

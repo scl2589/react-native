@@ -18,7 +18,7 @@ class TabMessageScreen extends Component {
             justifyContent: 'center'
         }}
         >
-            <Text>User Screen</Text>
+            <Text>Message Screen</Text>
         </View>
     )
   }
