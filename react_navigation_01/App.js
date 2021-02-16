@@ -14,7 +14,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from './src/home';
+import StackHomeScreen from './src/home';
 import UserScreen from './src/user';
 import LogoTitle from './src/logo';
 import DrawerHomeScreen from './src/home_drawer';
@@ -30,6 +30,46 @@ import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
+
+/*
+  Stack Navigator 
+    - Tab Navigator
+      - Tab Screen D 
+      - Tab Screen E 
+      - Tab Screen F 
+    - Stack Screen B
+    - Stack Screen C 
+*/
+
+MainScreen = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      tabBarOptions={{
+        activeBackgroundColor: 'skyblue',
+        activeTintColor: 'blue',
+        inactiveTintColor: '#fff',
+        style: {
+          backgroundColor: '#c6cbef'
+        },
+        // beside-icon, below-icon
+        labelPosition: 'below-icon'
+      }}
+      // 그림을 삽입할 것인데, 탭이 선택함과 동시에 해당 그림이 조금 더 크게 보여지도록 할 것
+      screenOptions={({route})=>({
+        tabBarLabel: route.name,
+        tabBarIcon: ({focused})=> {
+          TabBarIcon(focused)
+        }
+      })}
+    >
+      <Tab.Screen name="Home" component={TabHomeScreen}/>
+      <Tab.Screen name="User" component={TabUserScreen}/>
+      <Tab.Screen name="Message" component={TabMessageScreen}/>
+    </Tab.Navigator>
+    )
+  
+}
 
 const TabBarIcon = (focused, name) => {
   let iconImagePath;
@@ -95,30 +135,10 @@ class App extends Component {
   render () {
     return (
       <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName="Home"
-          tabBarOptions={{
-            activeBackgroundColor: 'skyblue',
-            activeTintColor: 'blue',
-            inactiveTintColor: '#fff',
-            style: {
-              backgroundColor: '#c6cbef'
-            },
-            // beside-icon, below-icon
-            labelPosition: 'below-icon'
-          }}
-          // 그림을 삽입할 것인데, 탭이 선택함과 동시에 해당 그림이 조금 더 크게 보여지도록 할 것
-          screenOptions={({route})=>({
-            tabBarLabel: route.name,
-            tabBarIcon: ({focused})=> {
-              TabBarIcon(focused)
-            }
-          })}
-        >
-          <Tab.Screen name="Home" component={TabHomeScreen}/>
-          <Tab.Screen name="User" component={TabUserScreen}/>
-          <Tab.Screen name="Message" component={TabMessageScreen}/>
-        </Tab.Navigator>
+        <Stack.Navigator>
+          <Stack.Screen name="Main" component={MainScreen}/>
+          <Stack.Screen name="Home_Stack" component={StackHomeScreen}/>
+        </Stack.Navigator>
       </NavigationContainer>
 
 
