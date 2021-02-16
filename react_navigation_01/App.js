@@ -8,9 +8,9 @@
 // 맨 위에 넣기 
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, Button, Linking } from 'react-native';
+import { StyleSheet, View, Text, Image, Button, Linking, TouchableOpacity } from 'react-native';
 // 모든 navigation 구조는 navigation container안에 들어가야 한다.
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DrawerActions, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -33,15 +33,15 @@ const Tab = createBottomTabNavigator();
 
 /*
   Stack Navigator 
-    - Tab Navigator
-      - Tab Screen D 
-      - Tab Screen E 
-      - Tab Screen F 
+    - Drawer Navigator w/ Drawer Screen C, D ... 
+      - Tab Navigator
+        - Tab Screen F 
+        - Tab Screen G
     - Stack Screen B
     - Stack Screen C 
 */
 
-MainScreen = () => {
+const TabComponent = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -119,6 +119,53 @@ const TabBarIcon = (focused, name) => {
 //   )
 // }
 
+const DrawerComponent = () => {
+  return (
+    <Drawer.Navigator
+      initialRouteName="Home"
+      // drawerType = front, slide, permanent
+      drawerType="front"
+      // sideDrawer을 오른쪽에서 열 수 있는 방법 
+      drawerPosition="right"
+      drawerStyle={{
+        backgroundColor: '#c6cbef',
+        width: 200
+      }}
+      drawerContentOptions={{
+        // active의 의미는 선택된 것 
+        activeTintColor: 'red',
+        activeBackgroundColor: 'skyblue'
+      }}
+      // drawerContent를 customizing할 수 있는 함수
+      // 그래서 drawerContent를 렌더링하기 위한 react 요소를 반환한다. 
+      // drawerContent는 default로 4가지의 props를 받는다.
+      // 1. drawer naviagator에 어떤 route가 있는지 알기 위한 state
+      // 2. 화면 이동을 해야하니 navigation
+      // 3. drawer screen의 option을 담기 위한 descriptors 
+      // 4. drawer가 열려있는지 닫혔는지 판단하기 위한 progress
+      // Side drawer는 default로 drawercontent를 통해 scroll view를 적용한다. 
+      drawerContent={props => <SideDrawer {...props} />}
+    >
+      <Drawer.Screen name="Route" component={TabComponent} />
+    </Drawer.Navigator>
+  )
+}
+
+const HeaderRight = () => {
+  const navigation = useNavigation();
+  return (
+    <View style={{flexDirection:'row', paddingRight: 15}}>
+      <TouchableOpacity
+        onPress={()=>{
+          // navigation이 dispatch해서 state를 업데이트 하려고 하는 것 
+          navigation.dispatch(DrawerActions.openDrawer)
+        }}
+      >
+        <Text>Open</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
 class App extends Component {
 
   // logoTitle = () => {
@@ -136,7 +183,13 @@ class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Main" component={MainScreen}/>
+          <Stack.Screen 
+            name="Main" 
+            component={DrawerComponent} 
+            options={{
+              headerRight:({}) => <HeaderRight/>
+            }}
+          />
           <Stack.Screen name="Home_Stack" component={StackHomeScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
