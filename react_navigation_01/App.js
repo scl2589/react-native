@@ -21,12 +21,35 @@ import DrawerHomeScreen from './src/home';
 import DrawerUserScreen from './src/user';
 import TabHomeScreen from './src/home_tab';
 import TabUserScreen from './src/user_tab';
+import TabMessageScreen from './src/message_tab';
 import PictogramHome from './src/assets/pics/home_icon.png'
 import SideDrawer from './src/my_drawer';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
+
+const TabBarIcon = (focused, name) => {
+  let iconImagePath;
+
+  if (name==='Home') {
+    iconImagePath = require('./src/assets/pics/home_icon.png')
+  } else if (name === 'User') {
+    iconImagePath = require('./src/assets/pics/user.png')
+  } else if (name === 'Message') {
+    iconImagePath = require('./src/assets/pics/message.png')
+  }
+
+  return (
+    <Image 
+      style = {{
+        width: focused ? 24 : 20,
+        height: focused ? 24 : 20,
+      }}
+      source = {iconImagePath}
+    />
+  )
+}
 
 // CustomDrawerContent = (props) => {
 //   return (
@@ -62,9 +85,29 @@ class App extends Component {
   render () {
     return (
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          initialRouteName="Home"
+          tabBarOptions={{
+            activeBackgroundColor: 'skyblue',
+            activeTintColor: 'blue',
+            inactiveTintColor: '#fff',
+            style: {
+              backgroundColor: '#c6cbef'
+            },
+            // beside-icon, below-icon
+            labelPosition: 'below-icon'
+          }}
+          // 그림을 삽입할 것인데, 탭이 선택함과 동시에 해당 그림이 조금 더 크게 보여지도록 할 것
+          screenOptions={({route})=>({
+            tabBarLabel: route.name,
+            tabBarIcon: ({focused})=> {
+              TabBarIcon(focused)
+            }
+          })}
+        >
           <Tab.Screen name="Home" component={TabHomeScreen}/>
           <Tab.Screen name="User" component={TabUserScreen}/>
+          <Tab.Screen name="Message" component={TabMessageScreen}/>
         </Tab.Navigator>
       </NavigationContainer>
 
