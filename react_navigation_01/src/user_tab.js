@@ -22,6 +22,8 @@ class TabUserScreen extends Component {
         )
     }
   render () {
+    //   Navigator을 nesting할때, params값을 props로 넘길 수 있다.
+      console.warn(this.props.route);
     return (
         <View style={{
             flex: 1,
