@@ -24,6 +24,7 @@ import TabUserScreen from './src/user_tab';
 import TabMessageScreen from './src/message_tab';
 import PictogramHome from './src/assets/pics/home_icon.png'
 import SideDrawer from './src/my_drawer';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();

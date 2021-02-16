@@ -18,6 +18,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* react_navigation_01Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* react_navigation_01Tests.m */; };
 		5C25FB445BD18978F0F44F88 /* libPods-react_navigation_01.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E871E3195F16F0F04174306C /* libPods-react_navigation_01.a */; };
+		A160701125DC104000ED31C4 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A160701025DC104000ED31C4 /* Ionicons.ttf */; };
 		F21497333F4559AEEBF4E695 /* libPods-react_navigation_01-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8011E7F7F62EECE05E3215 /* libPods-react_navigation_01-tvOS.a */; };
 		F527230946F9D05456C14FC2 /* libPods-react_navigation_01-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CEC3A9C9CEA3C5AD5A206D5 /* libPods-react_navigation_01-tvOSTests.a */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		2D02E47B1E0B4A5D006451C7 /* react_navigation_01-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "react_navigation_01-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* react_navigation_01-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "react_navigation_01-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CEC3A9C9CEA3C5AD5A206D5 /* libPods-react_navigation_01-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-react_navigation_01-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A160701025DC104000ED31C4 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		A7866D8522EC151172629BAC /* Pods-react_navigation_01-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react_navigation_01-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-react_navigation_01-tvOSTests/Pods-react_navigation_01-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		B53CF7AE42CC2E23BC9EA54A /* Pods-react_navigation_01-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react_navigation_01-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-react_navigation_01-tvOS/Pods-react_navigation_01-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B62E2CEE43501EC3EABD119C /* Pods-react_navigation_01-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-react_navigation_01-tvOS.release.xcconfig"; path = "Target Support Files/Pods-react_navigation_01-tvOS/Pods-react_navigation_01-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		13B07FAE1A68108700A75B9A /* react_navigation_01 */ = {
 			isa = PBXGroup;
 			children = (
+				A160700F25DC0F5400ED31C4 /* Fonts */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -182,6 +185,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A160700F25DC0F5400ED31C4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A160701025DC104000ED31C4 /* Ionicons.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		FF5A2FBDDBCFFE9FA64CB363 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,7 +205,6 @@
 				DCC132318705939A7CB60891 /* Pods-react_navigation_01Tests.debug.xcconfig */,
 				15F1014E77BC94701041A1B1 /* Pods-react_navigation_01Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,6 +318,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -338,6 +349,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				A160701125DC104000ED31C4 /* Ionicons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
