@@ -94,12 +94,7 @@ class App extends Component {
           }]
         }
         Contacts.addContact(newContact).then((contacts) => {
-            // console.warn(contacts);
-            // this.setState({
-            //   myContacts: contacts
-            // })
             this.getContacts();
-            // setMyContacts(contacts);
           })
           .catch((err) => {
             console.error(err);
@@ -109,6 +104,12 @@ class App extends Component {
         alert('no permission');
       }
     });
+  }
+
+  openForm = () => {
+    Contacts.openContactForm({}).catch((err)=> {
+      if (err) console.warn(err) 
+    })
   }
 
   render() {
@@ -128,6 +129,10 @@ class App extends Component {
         <Button
           title="Add Contacts"
           onPress={()=>this.addContacts()}
+        />
+        <Button 
+          title="Open Form"
+          onPress={()=>this.openForm()}
         />
       </View>
     )
