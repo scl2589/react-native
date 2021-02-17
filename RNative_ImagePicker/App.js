@@ -11,7 +11,7 @@ import { StyleSheet, View, Text, Image, Button } from 'react-native';
 class App extends Component {
   render() {
     return (
-      <View style={Style.container}>
+      <View style={styles.container}>
         <Text>Hello</Text>
       </View>
     )
