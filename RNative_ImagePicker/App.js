@@ -9,6 +9,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import Contacts from 'react-native-contacts';
 // import ImagePicker from 'react-native-image-picker'
 // import * as ImagePicker from 'react-native-image-picker';
 
