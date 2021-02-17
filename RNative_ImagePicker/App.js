@@ -7,43 +7,77 @@
  */
 
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, Button } from 'react-native';
+import { Platform, PermissionsAndroid, StyleSheet, View, Text, Image, Button } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Contacts from 'react-native-contacts';
-// import ImagePicker from 'react-native-image-picker'
-// import * as ImagePicker from 'react-native-image-picker';
 
 class App extends Component {
-  state = {
-    avatar: ''
+  async requestContactPermission() {
+    if (Platform.OS === 'ios') {
+      console.warn('iOS')
+      return true
+    } else {
+      console.warn('Android')
+
+      // await 뒤의 내용이 다 처리 될때까지 기다리고 그 값을 받아온다. 
+      const granted = await PermissionsAndroid.requestMultiple([
+        PermissionsAndriod.PERMISSIONS.WRITE_CONTACTS, 
+        PermissionsAndriod.PERMISSIONS.READ_CONTACTS
+      ]);
+
+      if (
+        granted['android.permission.READ_CONTACTS'] === PermissionsAndroid.RESULTS.GRANTED &&
+        granted['android.permission.WRITE_CONTACTS'] === PermissionsAndriod.RESULTS.GRANTED
+      ) {
+        return true 
+      } else {
+        return false
+      }
+    }
   }
 
-  addImage = () => {
-    // launchCamera 메소드를 불러온다. 콜백함수를 갖는데 카메라를 기동시켜서 사진을 찍을 것인데, 그 response를 받아와서 state에 avatar값을 갱신시켜준다.
-    launchImageLibrary({
-      title: 'Choose your photo',
-      takePhotoButtonTitle: 'Take a pretty one',
-      chooseFromLibraryButtonTitle: 'Select an old one',
-      cancleButtonTitle: 'Just go back'
-    }, response=>{
-      this.setState({
-        avatar: response.uri
-      })
-    })
-  }
+
+  // getContacts = () => {
+  //   this.requestContactPermission() 
+  //   .then((didGetPermission)=>{
+  //     if(didGetPermission) {
+  //       Contacts.getAll((err, contacts)=> {
+  //         if (err) {
+  //           throw err;
+  //         }
+  //         console.warn(contacts)
+  //       })
+  //     } else {
+  //       alert('no permission')
+  //     }
+  //   })
+  // }
+
+  getContacts = () => {
+    this.requestContactPermission().then((didGetPermission) => {
+      if (didGetPermission) {
+        Contacts.getAll()
+          .then((contacts) => {
+            console.warn(contacts);
+            // setMyContacts(contacts);
+          })
+          .catch((err) => {
+            console.error(err);
+            throw err;
+          });
+      } else {
+        alert('no permission');
+      }
+    });
+ };
+
 
   render() {
     return (
       <View style={styles.container}>
-        <Image 
-          source={{uri:this.state.avatar}}
-          style={styles.avatar}
-        />
-
-        {/* 버튼을 눌렀을 때 그림을 불러오거나 카메라를 기동시켜서 사진을 찍는 일을 할 수 있도록 함수를 호출  */}
-        <Button
-          title="Add an Image"
-          onPress={()=>this.addImage()}
+        <Button 
+          title="Load Contacts"
+          onPress={()=>this.getContacts()}
         />
       </View>
     )
