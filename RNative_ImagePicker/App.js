@@ -81,18 +81,7 @@ class App extends Component {
   addContacts = () => {
     this.requestContactPermission().then((didGetPermission) => {
       if (didGetPermission) {
-        const newContact = {
-          emailAddress: [{
-            label: 'work',
-            email: 'aaaa@example.com'
-          }],
-          familyName: 'Go',
-          givenName: 'Gildong',
-          phoneNumbers: [{
-            label: "mobile",
-            number: "(010)-1111-1111"
-          }]
-        }
+        
         Contacts.addContact(newContact).then((contacts) => {
             this.getContacts();
           })
@@ -107,7 +96,19 @@ class App extends Component {
   }
 
   openForm = () => {
-    Contacts.openContactForm({}).catch((err)=> {
+    const newContact = {
+      emailAddress: [{
+        label: 'work',
+        email: 'aaaa@example.com'
+      }],
+      familyName: 'ccccc',
+      givenName: 'ddddd',
+      phoneNumbers: [{
+        label: "mobile",
+        number: "(010)-1111-1111"
+      }]
+    }
+    Contacts.openContactForm(newContact).catch((err)=> {
       if (err) console.warn(err) 
     })
   }
