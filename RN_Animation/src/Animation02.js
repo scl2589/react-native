@@ -9,71 +9,53 @@
 import React, {Component} from 'react';
 import { Easing, Animated, StyleSheet, View, Text, Button } from 'react-native';
 
-class AnimOne extends Component {
+class AnimTwo extends Component {
     constructor() {
         super();
         // state 선언하기
         this.state = {
-            mySquare : new Animated.Value(1)
+            redSquare : new Animated.Value(1), 
+            greenSquare : new Animated.ValueXY(0, 0),
+            blueSquare : new Animated.ValueXY(0, 0),
         }
     }
 
     runAnimation = () => {
-        // Animated.spring(this.mySquare, {})
-        Animated.timing(this.state.mySquare, {
-            toValue: 0,
-            duration: 2000,
-            delay: 1500,
-        }).start();
+        Animated.sequence([
+            Animated.timing(this.state.redSquare, {
+                toValue: 0
+            }),
+            Animated.parallel([
+                Animated.spring(this.state.greenSquare, {
+                    toValue: {x: 200, y: 0}
+                }),
+                Animated.spring(this.state.blueSquare, {
+                    toValue: { x:200, y:400 }
+                }),
+            ])
+        ]).start();
     }
 
   render() {
     return (
         <View>
             <Animated.View
-                // style={this.state.mySquare.getLayout()}
                 style={{
-                    opacity: this.state.mySquare,
-                    transform: [
-                        {
-                            rotateX: this.state.mySquare.interpolate({
-                                inputRange: [0, 0.5, 1],
-                                outputRange: ['0deg', '180deg', '360deg']
-                            }),
-                        },
-                        {
-                            translateX: this.state.mySquare.interpolate({
-                                inputRange: [0, 0.5, 1],
-                                outputRange: [300, 150, 0]
-                            }),
-                        }
-                    ]
-                    // top: this.state.mySquare.interpolate({
-                    //     // 숫자가 작은 값부터 넣어줘야 한다.
-                    //     inputRange: [0, 1],
-                    //     // 동시에 효과를 내주고 싶은 property 
-                    //     // property 를 top으로 넣었기 때문에 y축 좌표 값이 들어간다.
-                    //     outputRange: [700, 0]
-                    // })
+                    opacity: this.state.redSquare
                 }}
             >
-                <View style={styles.square}>
-                </View>
+                <View style={styles.redSquare}></View>
             </Animated.View>
-            <Animated.Text
-                style={{
-                    fontSize: this.state.mySquare.interpolate({
-                        inputRange: [0, 0.5, 1],
-                        outputRange: [40, 30, 20]
-                    }),
-                    color: this.state.mySquare.interpolate({
-                        inputRange:[0, 0.5, 1],
-                        outputRange: ['red', 'green', 'blue']
-                    })
-                }}
+            <Animated.View
+                style={this.state.greenSquare.getLayout()}
             >
-                <Text>Animation Effects</Text>
-            </Animated.Text>
+                <View style={styles.greenSquare}></View>
+            </Animated.View>
+            <Animated.View
+                style={this.state.blueSquare.getLayout()}
+            >
+                <View style={styles.blueSquare}></View>
+            </Animated.View>
             <Button
                 title="Animation Start"
                 onPress={this.runAnimation}
@@ -85,11 +67,21 @@ class AnimOne extends Component {
 }
 
 const styles = StyleSheet.create({
-  square: {
+  redSquare: {
     width: 100,
     height: 100,
-    backgroundColor: 'skyblue'
+    backgroundColor: 'red'
+  },
+  greenSquare: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'green'
+  },
+  blueSquare: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'blue'
   }
 })
 
-export default AnimOne
+export default AnimTwo
