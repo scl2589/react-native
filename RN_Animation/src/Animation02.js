@@ -60,6 +60,10 @@ class AnimTwo extends Component {
                 title="Animation Start"
                 onPress={this.runAnimation}
             />
+            <Button
+                title="Check the Console"
+                onPress={()=>console.log("Button Touched!!")}
+            />
         </View>
       
     )
