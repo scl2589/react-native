@@ -60,6 +60,7 @@ class AnimTwo extends Component {
                 title="Animation Start"
                 onPress={this.runAnimation}
             />
+            {/* React Native debugger 사용시 Simulatorㅇ에서 command + d 클릭한 후 debugger 클릭하기 */}
             <Button
                 title="Check the Console"
                 onPress={()=>console.log("Button Touched!!")}
